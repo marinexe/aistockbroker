@@ -1,8 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check, Sparkles } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 const Pricing = () => {
+  const [selectedPlan, setSelectedPlan] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const plans = [
     {
       name: "Starter",
@@ -50,8 +57,13 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="py-24 bg-background relative">
-      <div className="container px-4">
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+      <div className="absolute top-40 right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-20 w-80 h-80 bg-success/5 rounded-full blur-3xl" />
+      
+      <div className="container px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Транспарентни
@@ -101,16 +113,63 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <Button
-                className={`w-full ${
-                  plan.popular
-                    ? 'bg-gradient-to-r from-primary to-success hover:opacity-90'
-                    : 'bg-secondary hover:bg-secondary/80'
-                }`}
-                size="lg"
-              >
-                Избери План
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    onClick={() => setSelectedPlan(plan.name)}
+                    className={`w-full ${
+                      plan.popular
+                        ? 'bg-gradient-to-r from-primary to-success hover:opacity-90'
+                        : 'bg-secondary hover:bg-secondary/80'
+                    }`}
+                    size="lg"
+                  >
+                    Избери План
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Изберете го {plan.name} планот</DialogTitle>
+                    <DialogDescription>
+                      Внесете ги вашите податоци за да започнете со ${plan.price}/месец
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4 py-4">
+                    <div className="rounded-lg bg-card p-4 border border-border">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="font-semibold">{plan.name} План</span>
+                        <span className="text-2xl font-bold">${plan.price}/мес</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{plan.description}</p>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="plan-name">Име и презиме</Label>
+                      <Input 
+                        id="plan-name" 
+                        placeholder="Вашето име"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="plan-email">Email адреса</Label>
+                      <Input 
+                        id="plan-email" 
+                        type="email" 
+                        placeholder="ime@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                    </div>
+                    <Button className="w-full bg-gradient-to-r from-primary to-success">
+                      Потврди Претплата
+                    </Button>
+                    <p className="text-xs text-muted-foreground text-center">
+                      14-дневна гаранција за враќање на парите
+                    </p>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </Card>
           ))}
         </div>

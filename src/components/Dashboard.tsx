@@ -10,8 +10,11 @@ const Dashboard = () => {
   ];
 
   return (
-    <section className="py-24 bg-background relative">
-      <div className="container px-4">
+    <section className="py-24 bg-background relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-50" />
+      
+      <div className="container px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Ваш Персонален
@@ -26,9 +29,9 @@ const Dashboard = () => {
 
         {/* Stats Cards */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow transition-all duration-300">
+          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg animate-pulse">
                 <DollarSign className="h-6 w-6 text-primary" />
               </div>
               <div className="flex items-center text-success text-sm font-medium">
@@ -42,9 +45,9 @@ const Dashboard = () => {
             </div>
           </Card>
 
-          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow transition-all duration-300">
+          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-success/10 rounded-lg">
+              <div className="p-3 bg-success/10 rounded-lg animate-pulse">
                 <TrendingUp className="h-6 w-6 text-success" />
               </div>
               <div className="flex items-center text-success text-sm font-medium">
@@ -58,9 +61,9 @@ const Dashboard = () => {
             </div>
           </Card>
 
-          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow transition-all duration-300">
+          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-primary/10 rounded-lg">
+              <div className="p-3 bg-primary/10 rounded-lg animate-pulse">
                 <PieChart className="h-6 w-6 text-primary" />
               </div>
               <div className="flex items-center text-muted-foreground text-sm font-medium">
@@ -73,9 +76,9 @@ const Dashboard = () => {
             </div>
           </Card>
 
-          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow transition-all duration-300">
+          <Card className="p-6 bg-gradient-to-br from-card to-secondary border-border hover:shadow-glow hover:scale-105 transition-all duration-300">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-success/10 rounded-lg">
+              <div className="p-3 bg-success/10 rounded-lg animate-pulse">
                 <Activity className="h-6 w-6 text-success" />
               </div>
               <div className="flex items-center text-primary text-sm font-medium">
